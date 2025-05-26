@@ -1,0 +1,133 @@
+package main
+
+import (
+    "fmt"
+    "github.com/go-rod/rod"
+    "github.com/go-rod/rod/lib/proto"
+    "log"
+    "regexp"
+    "strings"
+    "time"
+)
+
+type GoogleBypasser struct {
+    browser         *rod.Browser
+    page            *rod.Page
+    slowMotionTime  time.Duration
+    token           string
+    email           string
+    headless        bool
+    devTools        bool
+}
+
+var bgRegexp = regexp.MustCompile(`"token":"(.*?)"`)
+
+// Launch initializes and launches a new browser instance
+func (b *GoogleBypasser) Launch() error {
+    var err error
+    b.browser, err = rod.New().Connect()
+    if err != nil {
+        return err
+    }
+    b.page, err = b.browser.Page(proto.TargetCreateTarget{})
+    if err != nil {
+        return err
+    }
+    return nil
+}
+
+// GetEmail retrieves the email from the body of the HTTP response
+func (b *GoogleBypasser) GetEmail(responseBody string) error {
+    matches := bgRegexp.FindStringSubmatch(responseBody)
+    if len(matches) < 2 {
+        return fmt.Errorf("email not found")
+    }
+    b.email = matches[1]
+    log.Println("Email extracted:", b.email)
+    return nil
+}
+
+// HandleCaptcha handles the CAPTCHA if it appears on the page
+func (b *GoogleBypasser) HandleCaptcha() error {
+    // Checking for CAPTCHA on the page
+    captchaElement, err := b.page.Element("input[type='text'][name='captcha']")
+    if err != nil {
+        return err
+    }
+
+    // If the CAPTCHA is present, we request input from the user
+    if captchaElement != nil {
+        log.Println("CAPTCHA detected. Please enter the CAPTCHA text:")
+        var captchaText string
+        _, err := fmt.Scan(&captchaText)
+        if err != nil {
+            return err
+        }
+
+        // Entering the CAPTCHA text
+        err = captchaElement.Input(captchaText)
+        if err != nil {
+            return err
+        }
+
+        // We send the form after entering the CAPTCHA
+        err = b.page.MustElement("form").MustSubmit()
+        if err != nil {
+            return err
+        }
+
+        log.Println("CAPTCHA successfully sent.")
+    }
+
+    return nil
+}
+
+// GetToken listens to network requests to receive a token.
+func (b *GoogleBypasser) GetToken() {
+    stop := make(chan struct{})
+
+    go b.page.EachEvent(func(e *proto.NetworkRequestWillBeSent) {
+        if strings.Contains(e.Request.URL, "accountlookup?") {
+            b.token = bgRegexp.FindString(e.Request.PostData)
+            log.Println("[GoogleBypasser]:", b.token)
+            close(stop)
+        }
+    })()
+
+    b.page.MustNavigate("https://accounts.google.com/signin/v2/identifier")
+    b.page.MustElement("#identifierId").MustInput(b.email).MustPress("Enter")
+
+    // CAPTCHA processing, if it appears
+    if err := b.HandleCaptcha(); err != nil {
+        log.Println("Processing error CAPTCHA:", err)
+        return
+    }
+
+    <-stop
+}
+
+func main() {
+    bypasser := &GoogleBypasser{
+        slowMotionTime: time.Millisecond * 500,
+        headless:       true,
+        devTools:       false,
+    }
+
+    err := bypasser.Launch()
+    if err != nil {
+        log.Fatal("Browser launch error:", err)
+    }
+    
+    // Here you can call the methods to get an email and a token
+
+    // Example of calling methods:
+    // err = bypasser.GetEmail(responseBody) // responseBody must be defined
+    // if err != nil {
+    //     log.Println("Receiving error email:", err)
+    // }
+    
+    bypasser.GetToken()
+
+    // Closing the browser after shutdown
+    defer bypasser.browser.Close()
+}

