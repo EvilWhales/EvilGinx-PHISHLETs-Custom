@@ -18,6 +18,14 @@ Learn how to install Evilginx locally or deploy it on a remote server [Deploymen
 Phishlets are configuration files in YAML format. If you need to get familiar with YAML, first, you can find some good overview here: [YAML Syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html) 
 Phishlet Format [Create](https://help.evilginx.com/docs/phishlet-format) 
 
+<p align="center">
+<video src='https://github.com/user-attachments/assets/96019d0b-59c6-4c3a-ae04-d531f39f402b'/>
+</p>
+
+
+
+
+
 ### #js_inject
 This section defines all Javascript scripts that you want to inject into proxied pages. Every script can be customized with {var_name} variable parameters, which later can be set to different values in each created lure.
 ```
