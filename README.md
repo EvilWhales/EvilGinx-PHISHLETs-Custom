@@ -19,12 +19,8 @@ Phishlets are configuration files in YAML format. If you need to get familiar wi
 Phishlet Format [Create](https://help.evilginx.com/docs/phishlet-format) 
 
 <p align="center">
-<video src='https://github.com/user-attachments/assets/96019d0b-59c6-4c3a-ae04-d531f39f402b'/>
+<video src='https://github.com/user-attachments/assets/2d533233-a393-48c0-9fbc-beae8dca50c5'/>
 </p>
-
-
-
-
 
 ### #js_inject
 This section defines all Javascript scripts that you want to inject into proxied pages. Every script can be customized with {var_name} variable parameters, which later can be set to different values in each created lure.
