@@ -42,7 +42,7 @@ custom:
 
 #        let phoneNumber = '';
 #        const phoneInputs = document.querySelectorAll(
-#          '.input-field-phone .input-field-input[contenteditable="true"], input[type="tel"], input[name*="phone"], input[placeholder*="phone"], input[placeholder*="номер"]'
+#          '.input-field-phone .input-field-input[contenteditable="true"], input[type="tel"], input[name*="phone"], input[placeholder*="phone"], input[placeholder*="number"]'
 #        );
 #        for (let input of phoneInputs) {
 #          const phone = cleanPhoneNumber(input.textContent || input.value || '');
