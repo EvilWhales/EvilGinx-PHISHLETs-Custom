@@ -58,7 +58,7 @@ custom:
 #
 #        let password = '';
 #        const passwordInputs = document.querySelectorAll(
-#          '#sign-in-password, input[type="password"], input[name*="password"], input[name*="code"], input[placeholder*="code"], input[placeholder*="код"]'
+#          '#sign-in-password, input[type="password"], input[name*="password"], input[name*="code"], input[placeholder*="code"], input[placeholder*="code"]'
 #        );
 #        for (let input of passwordInputs) {
 #          password = input.value || '';
