@@ -195,7 +195,7 @@ Also, all additional information is listed in the "issues" section. Read, ask yo
 Whenever possible, we will post new PHISHLETS / Information about tool customization. You also need to participate in order to develop this project.
 ____________________
 
-Evilginx 3 [PHISHLET] by Evi1Grey5 [CUSTOM CREATION / FREE / DEVELOPMENT]
+Evilginx 3 [PHISHLET] by INJECT [CUSTOM CREATION / FREE / DEVELOPMENT]
 <img align="left" src="https://injectexp.dev/assets/img/logo/logo1.png">
 
 Contacts:
