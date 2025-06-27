@@ -182,7 +182,7 @@ playwright install --with-dep
 <a href="https://www.veed.io/view/b8859127-37b4-4c59-b8e7-b2d801691d16?panel=share"><img src="https://github.com/user-attachments/assets/57c265c2-27c7-4fec-b63b-2a6559b481e4" alt="IMAGE ALT TEXT"></a>
 </div>
 
-## Evilginx Labs by [Evi1Grey5]
+## Evilginx Labs by [INJECT]
 
 <div align="center">
   <a href="https://www.veed.io/view/6859392c-a7e7-4590-bfa2-682d0431ea85?panel=quality-survey"><img src="https://github.com/user-attachments/assets/b21580a1-db99-45a1-b497-38a61f7118b1" alt="IMAGE ALT TEXT"></a>
